@@ -26,6 +26,7 @@ jobs:
           G_TOKEN: ${{ secrets.PUSH_TOKEN }}
         run: |
           /home/runner/work/a/a/cron/cron
+          tree /home/runner/work/
           git clone https://github.com/freecracy/daily.git /home/runner/work/a/daily
           mkdir -p /home/runner/work/a/daily/docs/`TZ=UTC-8 date +%Y-%Y-%m`
           mv /home/runner/work/a/a/cron/docs/*.md /home/runner/work/a/daily/docs/
