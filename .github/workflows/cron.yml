@@ -1,0 +1,37 @@
+name: cron
+
+on:
+  push:
+  schedule:
+    - cron: "00 15 * * *"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: init
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.16
+
+      - name: build
+        run: |
+          cd /home/runner/work/a/a/cron
+          go build
+
+      - name: run
+        env:
+          G_TOKEN: ${{ secrets.PUSH_TOKEN }}
+        run: |
+          /home/runner/work/a/a/cron/cron
+          git clone https://github.com/freecracy/daily.git /home/runner/work/a/daily
+          mkdir -p /home/runner/work/a/daily/docs/`TZ=UTC-8 date +%Y-%Y-%m`
+          mv /home/runner/work/a/a/cron/docs/*.md /home/runner/work/a/daily/docs/
+          cd /home/runner/work/a/daily
+          git config user.name freecracy
+          git config user.email 12114073+freecracy@users.noreply.github.com
+          git add .
+          git commit -m `TZ=UTC-8 date +%Y-%m-%d`
+          git push https://${G_TOKEN}@github.com/freecracy/daily.git main:main
