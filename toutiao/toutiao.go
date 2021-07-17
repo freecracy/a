@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/PuerkitoBio/goquery"
+	"github.com/freecracy/a/leet"
 	"go.uber.org/zap"
 )
 
@@ -51,13 +52,20 @@ func (t *Toutiao) GetNewData() string {
 
 func Daily() {
 	t := &Toutiao{}
+	l := &leet.Leet{}
 	local, _ := time.LoadLocation("Asia/Shanghai")
 	fileName := time.Now().In(local).Format("2006年01月02日")
 	content := `# %s
 ## %s
 %s
+
+## %s
+%s
 `
-	_ = ioutil.WriteFile(fmt.Sprintf("./docs/%s.md", fileName), []byte(fmt.Sprintf(content, fileName, "头条", t.GetNewData())), 0644)
+	_ = ioutil.WriteFile(fmt.Sprintf("./docs/%s.md", fileName), []byte(fmt.Sprintf(content, fileName, "头条", t.GetNewData(),
+		"code",
+		l.GetNewData(),
+	)), 0644)
 }
 
 func init() {

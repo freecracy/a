@@ -7,6 +7,7 @@ require (
 	github.com/gin-gonic/gin v1.7.2
 	github.com/robfig/cron v1.2.0
 	github.com/russross/blackfriday/v2 v2.1.0
+	github.com/tidwall/sjson v1.1.7
 	go.uber.org/zap v1.18.1
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gorm.io/driver/sqlite v1.1.4
