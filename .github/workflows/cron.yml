@@ -29,7 +29,7 @@ jobs:
           tree /home/runner/work/
           git clone https://github.com/freecracy/daily.git /home/runner/work/a/daily
           mkdir -p /home/runner/work/a/daily/docs/`TZ=UTC-8 date +%Y-%Y-%m`
-          mv /home/runner/work/a/a/cron/docs/*.md /home/runner/work/a/daily/docs/
+          mv /home/runner/work/a/a/docs/*.md /home/runner/work/a/daily/docs/
           cd /home/runner/work/a/daily
           git config user.name freecracy
           git config user.email 12114073+freecracy@users.noreply.github.com
